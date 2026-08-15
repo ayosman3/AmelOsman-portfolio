@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Amel Osman — Data Science</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#EDEAE1;
+    --paper-2:#E3DFD1;
+    --ink:#1E2620;
+    --ink-soft:#57604F;
+    --forest:#2F5D4E;
+    --brick:#8C4128;
+    --denim:#3C5B86;
+    --line:#C7BFA9;
+    --radius:2px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.01ms !important; transition-duration:0.01ms !important;}
+  }
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'IBM Plex Sans', sans-serif;
+    font-size:16px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  .mono{font-family:'IBM Plex Mono', monospace;}
+  .wrap{max-width:1080px; margin:0 auto; padding:0 28px;}
+
+  /* ---- nav ---- */
+  header.nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(237,234,225,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    max-width:1080px; margin:0 auto; padding:16px 28px;
+    display:flex; justify-content:space-between; align-items:center;
+    flex-wrap:wrap; gap:10px;
+  }
+  .nav-mark{
+    font-family:'Fraunces', serif; font-weight:600; font-size:1.05rem;
+    letter-spacing:0.01em;
+  }
+  .nav-mark span{color:var(--forest);}
+  .nav-links{display:flex; gap:4px; flex-wrap:wrap;}
+  .nav-links a{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.72rem; letter-spacing:0.06em; text-transform:uppercase;
+    color:var(--ink-soft); text-decoration:none;
+    padding:7px 12px; border:1px solid transparent; border-radius:var(--radius);
+    transition:border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
+  }
+  .nav-links a:hover, .nav-links a:focus-visible{
+    border-color:var(--line); color:var(--forest); background:var(--paper-2);
+    outline:none;
+  }
+
+  /* ---- hero ---- */
+  .hero{padding:76px 0 64px; border-bottom:1px solid var(--line);}
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace; font-size:0.75rem;
+    letter-spacing:0.12em; text-transform:uppercase; color:var(--forest);
+    margin:0 0 18px; display:flex; align-items:center; gap:10px;
+  }
+  .eyebrow::before{content:""; width:22px; height:1px; background:var(--forest); display:inline-block;}
+  h1.name{
+    font-family:'Fraunces', serif; font-weight:600;
+    font-size:clamp(2.6rem, 6.4vw, 4.6rem);
+    line-height:1.02; margin:0 0 20px; letter-spacing:-0.01em;
+  }
+  .tagline{
+    font-size:clamp(1.05rem, 2vw, 1.3rem); color:var(--ink-soft);
+    max-width:640px; margin:0 0 26px; font-weight:400;
+  }
+  .credential-line{
+    font-family:'IBM Plex Mono', monospace; font-size:0.82rem; color:var(--ink-soft);
+    border-top:1px dashed var(--line); border-bottom:1px dashed var(--line);
+    padding:14px 0; max-width:680px; line-height:1.9;
+  }
+  .hero-ctas{display:flex; gap:12px; margin-top:30px; flex-wrap:wrap;}
+  .btn{
+    font-family:'IBM Plex Mono', monospace; font-size:0.78rem; letter-spacing:0.04em;
+    text-transform:uppercase; text-decoration:none; padding:12px 20px;
+    border-radius:var(--radius); border:1px solid var(--ink); color:var(--ink);
+    transition:all 0.15s ease;
+  }
+  .btn.primary{background:var(--forest); border-color:var(--forest); color:var(--paper);}
+  .btn:hover, .btn:focus-visible{transform:translateY(-1px); outline:none;}
+  .btn.primary:hover{background:#264c40;}
+  .btn:not(.primary):hover{background:var(--paper-2);}
+
+  /* ---- section shell w/ docket rail ---- */
+  section{padding:64px 0; border-bottom:1px solid var(--line);}
+  section:last-of-type{border-bottom:none;}
+  .section-head{
+    display:flex; align-items:baseline; gap:16px; margin-bottom:34px;
+  }
+  .section-num{
+    font-family:'IBM Plex Mono', monospace; font-size:0.78rem; color:var(--brick);
+    border:1px solid var(--brick); border-radius:var(--radius);
+    padding:2px 8px; flex:none;
+  }
+  h2.section-title{
+    font-family:'Fraunces', serif; font-weight:600; font-size:clamp(1.5rem,3vw,2rem);
+    margin:0;
+  }
+
+  /* ---- about ---- */
+  .about-grid{display:grid; grid-template-columns:1.4fr 1fr; gap:48px;}
+  .about-grid p{margin:0 0 16px; color:var(--ink-soft); max-width:56ch;}
+  .about-grid p strong{color:var(--ink); font-weight:600;}
+  .field-notes{
+    background:var(--paper-2); border:1px solid var(--line); border-radius:var(--radius);
+    padding:20px 22px; height:fit-content;
+  }
+  .field-notes h3{
+    font-family:'IBM Plex Mono', monospace; font-size:0.72rem; text-transform:uppercase;
+    letter-spacing:0.08em; color:var(--forest); margin:0 0 12px;
+  }
+  .field-notes dl{margin:0; font-size:0.88rem;}
+  .field-notes dt{color:var(--ink-soft); font-family:'IBM Plex Mono', monospace; font-size:0.72rem; margin-top:12px;}
+  .field-notes dt:first-child{margin-top:0;}
+  .field-notes dd{margin:2px 0 0; color:var(--ink);}
+
+  /* ---- docket / projects ---- */
+  .case{
+    border:1px solid var(--line); border-radius:var(--radius); background:var(--paper-2);
+    padding:26px 28px; margin-bottom:20px; position:relative;
+    opacity:0; transform:translateY(14px); transition:opacity 0.5s ease, transform 0.5s ease;
+  }
+  .case.in-view{opacity:1; transform:translateY(0);}
+  .case-meta{
+    display:flex; justify-content:space-between; align-items:flex-start;
+    flex-wrap:wrap; gap:10px; margin-bottom:10px;
+  }
+  .case-id{font-family:'IBM Plex Mono', monospace; font-size:0.72rem; color:var(--brick); letter-spacing:0.04em;}
+  .case-status{
+    font-family:'IBM Plex Mono', monospace; font-size:0.68rem; text-transform:uppercase;
+    letter-spacing:0.06em; color:var(--forest); border:1px solid var(--forest);
+    border-radius:var(--radius); padding:2px 8px;
+  }
+  .case h3{font-family:'Fraunces', serif; font-weight:600; font-size:1.3rem; margin:0 0 8px;}
+  .case p.desc{color:var(--ink-soft); margin:0 0 14px; max-width:70ch;}
+  .case-tags{display:flex; flex-wrap:wrap; gap:8px; margin-bottom:10px;}
+  .case-tags span{
+    font-family:'IBM Plex Mono', monospace; font-size:0.68rem; color:var(--denim);
+    border:1px solid var(--denim); border-radius:var(--radius); padding:2px 7px;
+  }
+  .case-stat{
+    font-family:'IBM Plex Mono', monospace; font-size:0.78rem; color:var(--ink);
+    border-left:2px solid var(--brick); padding-left:10px; margin-top:12px;
+  }
+  .case-link{
+    display:inline-block; margin-top:14px; font-family:'IBM Plex Mono', monospace;
+    font-size:0.75rem; color:var(--ink-soft); border-bottom:1px dashed var(--line);
+    text-decoration:none;
+  }
+
+  /* ---- skills ---- */
+  .skills-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(220px,1fr)); gap:26px;}
+  .skill-group h3{
+    font-family:'IBM Plex Mono', monospace; font-size:0.72rem; text-transform:uppercase;
+    letter-spacing:0.08em; color:var(--forest); margin:0 0 12px;
+    border-bottom:1px solid var(--line); padding-bottom:8px;
+  }
+  .skill-group ul{list-style:none; margin:0; padding:0;}
+  .skill-group li{
+    font-size:0.92rem; color:var(--ink-soft); padding:5px 0;
+  }
+
+  /* ---- contact ---- */
+  .contact-box{
+    display:flex; justify-content:space-between; align-items:flex-end; gap:30px;
+    flex-wrap:wrap;
+  }
+  .contact-links{display:flex; gap:14px; flex-wrap:wrap;}
+  footer{
+    text-align:center; padding:30px 0 50px; font-family:'IBM Plex Mono', monospace;
+    font-size:0.7rem; color:var(--ink-soft); letter-spacing:0.06em;
+  }
+
+  @media (max-width:760px){
+    .about-grid{grid-template-columns:1fr;}
+    .nav-inner{flex-direction:column; align-items:flex-start;}
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="nav-mark">Amel<span>.</span>Osman</div>
+    <nav class="nav-links">
+      <a href="#about">About</a>
+      <a href="#work">Work</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+  <section class="hero">
+    <p class="eyebrow mono">Data Science · Portland, OR</p>
+    <h1 class="name">Amel Osman</h1>
+    <p class="tagline">I build data systems for the parts of the world that don't usually get measured — pretrial justice records, transit ridership, foster care case files.</p>
+    <p class="credential-line">MS Data Science, Willamette University — Aug 2026 &nbsp;·&nbsp; B.A. Psychology, Neuroscience minor &nbsp;·&nbsp; Case management background with foster youth</p>
+    <div class="hero-ctas">
+      <a class="btn primary" href="#work">View the work</a>
+      <a class="btn" href="#contact">Get in touch</a>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="section-head">
+      <span class="section-num mono">No. 00</span>
+      <h2 class="section-title">About</h2>
+    </div>
+    <div class="about-grid">
+      <div>
+        <p>Before data science, I worked directly with people — as a <strong>Youth Engagement Coach</strong> doing case management with foster youth, and as an organizer building youth advocacy programs across Portland, including founding <strong>Stand With Youth</strong>. That's the lens I bring to data work: a row in a dataset usually represents someone's case, someone's commute, someone's outcome.</p>
+        <p>My MS in Data Science at Willamette University builds on a psychology degree with a neuroscience minor. I'm drawn to projects where data can make an opaque system — the justice system, a transit network — a little more legible, without losing sight of who's on the other end of the record.</p>
+      </div>
+      <div class="field-notes">
+        <h3>Field notes</h3>
+        <dl>
+          <dt>Based in</dt><dd>Portland, Oregon</dd>
+          <dt>Currently</dt><dd>Finishing MS Data Science, Willamette University</dd>
+          <dt>Background</dt><dd>Youth advocacy &amp; case management</dd>
+          <dt>Languages</dt><dd>Somali, Arabic, English (fluent)</dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section id="work">
+    <div class="section-head">
+      <span class="section-num mono">No. 01</span>
+      <h2 class="section-title">Selected work</h2>
+    </div>
+
+    <article class="case">
+      <div class="case-meta">
+        <span class="case-id mono">CASE NO. 2026-01</span>
+        <span class="case-status mono">Capstone · In progress</span>
+      </div>
+      <h3>Pretrial Detention, Poverty, and the 2020 Bail Reform Law</h3>
+      <div class="case-tags">
+        <span>DuckDB</span><span>Regression</span><span>VIF Diagnostics</span><span>Policy Data</span>
+      </div>
+      <p class="desc">DATA 510 capstone with a partner, supervised by faculty. Built a database from New York State's Supplemental Pretrial Release Data (1.3M+ case records, 2019–2024) combined with county-level poverty data across all 62 NY counties, to ask whether pretrial detention predicts conviction outcomes — and whether that relationship shifted after the 2020 bail reform law, or varies by county poverty level.</p>
+      <div class="case-stat">Poverty rate is a significant predictor of the detention–conviction gap (β = 0.85, p &lt; 0.001, R² = 15%)</div>
+      <a class="case-link" href="#">Add link to poster / repo →</a>
+    </article>
+
+    <article class="case">
+      <div class="case-meta">
+        <span class="case-id mono">CASE NO. 2026-02</span>
+        <span class="case-status mono">Team project · Documentation Lead</span>
+      </div>
+      <h3>Team Hawk — Prague Metro Data Pipeline</h3>
+      <div class="case-tags">
+        <span>Airflow</span><span>PostgreSQL</span><span>dbt</span><span>Grafana</span><span>Star Schema</span>
+      </div>
+      <p class="desc">A data engineering course project building an end-to-end pipeline around Prague's metro transit taps — from raw MongoDB staging tables through a modeled warehouse to a Grafana geomap. As documentation lead, wrote architecture decision records, validated the star schema, and stood up the project's public documentation site.</p>
+      <a class="case-link" href="#">Add link to docs site / repo →</a>
+    </article>
+
+    <article class="case">
+      <div class="case-meta">
+        <span class="case-id mono">CASE NO. 2026-03</span>
+        <span class="case-status mono">Coursework</span>
+      </div>
+      <h3>Applied ML: From Perceptrons to Diffusion Models</h3>
+      <div class="case-tags">
+        <span>Neural Networks</span><span>VAEs / GANs</span><span>Transformers</span><span>Convolution</span>
+      </div>
+      <p class="desc">A run of assignments building intuition from the ground up: implementing convolution and backpropagation by hand, comparing classical feature-engineered models against end-to-end deep learning, and working through generative architectures — autoencoders, VAEs, GANs, and diffusion models — to understand how each handles the tradeoff between control and expressiveness.</p>
+      <a class="case-link" href="#">Add project writeup →</a>
+    </article>
+  </section>
+
+  <section id="skills">
+    <div class="section-head">
+      <span class="section-num mono">No. 02</span>
+      <h2 class="section-title">Skills</h2>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <h3>Data Engineering</h3>
+        <ul>
+          <li>DuckDB &amp; PostgreSQL</li>
+          <li>Airflow &amp; dbt</li>
+          <li>Docker</li>
+          <li>Pipeline documentation (ADRs)</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <h3>ML &amp; Statistics</h3>
+        <ul>
+          <li>Regression &amp; VIF diagnostics</li>
+          <li>Neural network architectures</li>
+          <li>Generative models (VAE, GAN, diffusion)</li>
+          <li>Transformers &amp; attention</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <h3>Tools</h3>
+        <ul>
+          <li>Python &amp; SQL</li>
+          <li>Git</li>
+          <li>Grafana</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <h3>Languages</h3>
+        <ul>
+          <li>Somali</li>
+          <li>Arabic</li>
+          <li>English</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="section-head">
+      <span class="section-num mono">No. 03</span>
+      <h2 class="section-title">Contact</h2>
+    </div>
+    <div class="contact-box">
+      <p style="max-width:44ch; color:var(--ink-soft); margin:0;">Open to data science and analytics roles, especially where the work touches public systems or social impact.</p>
+      <div class="contact-links">
+        <a class="btn primary" href="mailto:your.email@example.com">Email me</a>
+        <a class="btn" href="#">LinkedIn</a>
+        <a class="btn" href="#">GitHub</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<footer>END OF FILE — LAST UPDATED AUGUST 2026</footer>
+
+<script>
+  const cases = document.querySelectorAll('.case');
+  if('IntersectionObserver' in window){
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){ e.target.classList.add('in-view'); io.unobserve(e.target); }
+      });
+    }, {threshold:0.15});
+    cases.forEach(c=>io.observe(c));
+  } else {
+    cases.forEach(c=>c.classList.add('in-view'));
+  }
+</script>
+
+</body>
+</html>
