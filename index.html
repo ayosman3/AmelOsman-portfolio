@@ -70,6 +70,16 @@
 
   /* ---- hero ---- */
   .hero{padding:76px 0 64px; border-bottom:1px solid var(--line);}
+  .hero-grid{display:grid; grid-template-columns:1fr 260px; gap:48px; align-items:start;}
+  .hero-photo{
+    width:260px; height:260px; border-radius:var(--radius);
+    border:1px solid var(--line); overflow:hidden; background:var(--paper-2);
+  }
+  .hero-photo img{width:100%; height:100%; object-fit:cover; display:block;}
+  @media (max-width:760px){
+    .hero-grid{grid-template-columns:1fr;}
+    .hero-photo{width:180px; height:180px;}
+  }
   .eyebrow{
     font-family:'IBM Plex Mono', monospace; font-size:0.75rem;
     letter-spacing:0.12em; text-transform:uppercase; color:var(--forest);
@@ -176,9 +186,35 @@
   }
   .case-link{
     display:inline-block; margin-top:14px; font-family:'IBM Plex Mono', monospace;
-    font-size:0.75rem; color:var(--ink-soft); border-bottom:1px dashed var(--line);
+    font-size:0.75rem; color:var(--forest); border-bottom:1px solid var(--forest);
     text-decoration:none;
   }
+  .case-bullets{margin:14px 0 0; padding:0; list-style:none;}
+  .case-bullets li{
+    position:relative; padding-left:18px; margin-bottom:8px;
+    color:var(--ink-soft); max-width:70ch;
+  }
+  .case-bullets li::before{
+    content:"•"; position:absolute; left:0; color:var(--forest); font-weight:700;
+  }
+
+  /* ---- experience ---- */
+  .exp-item{
+    border-bottom:1px solid var(--line); padding:22px 0;
+  }
+  .exp-item:first-child{padding-top:0;}
+  .exp-item:last-child{border-bottom:none;}
+  .exp-head{
+    display:flex; justify-content:space-between; align-items:baseline;
+    flex-wrap:wrap; gap:8px; margin-bottom:6px;
+  }
+  .exp-role{font-family:'Fraunces', serif; font-weight:600; font-size:1.15rem; color:var(--forest-deep);}
+  .exp-org{color:var(--ink-soft); font-weight:500;}
+  .exp-date{
+    font-family:'IBM Plex Mono', monospace; font-size:0.72rem; color:var(--ink-soft);
+    letter-spacing:0.03em; white-space:nowrap;
+  }
+  .exp-desc{color:var(--ink-soft); margin:0; max-width:75ch;}
 
   /* ---- skills ---- */
   .skills-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(220px,1fr)); gap:26px;}
@@ -216,7 +252,8 @@
     <div class="nav-mark">Amel<span>.</span>Osman</div>
     <nav class="nav-links">
       <a href="#about">About</a>
-      <a href="#work">Work</a>
+      <a href="#work">Projects</a>
+      <a href="#experience">Experience</a>
       <a href="#skills">Skills</a>
       <a href="#contact">Contact</a>
     </nav>
@@ -225,32 +262,37 @@
 
 <div class="wrap">
   <section class="hero">
-    <p class="eyebrow mono">Data Science · Portland, OR</p>
-    <h1 class="name">Amel <span class="last">Osman</span>
-      <svg class="flourish" viewBox="0 0 300 16" preserveAspectRatio="none" aria-hidden="true">
-        <path d="M2 8 C 60 2, 120 14, 180 6 C 220 1, 260 10, 298 5" fill="none" stroke="#1D6E4C" stroke-width="2.5" stroke-linecap="round"/>
-      </svg>
-    </h1>
-    <p class="tagline">I build data systems for the parts of the world that don't usually get measured — pretrial justice records, transit ridership, foster care case files.</p>
-    <p class="credential-line">MS Data Science, Willamette University — Aug 2026 &nbsp;·&nbsp; B.A. Psychology, Neuroscience minor &nbsp;·&nbsp; Case management background with foster youth</p>
-    <div class="hero-ctas">
-      <a class="btn primary" href="#work">View the work</a>
-      <a class="btn" href="#contact">Get in touch</a>
+    <div class="hero-grid">
+      <div>
+        <p class="eyebrow mono">Data Science · Portland, OR</p>
+        <h1 class="name">Amel <span class="last">Osman</span>
+          <svg class="flourish" viewBox="0 0 300 16" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M2 8 C 60 2, 120 14, 180 6 C 220 1, 260 10, 298 5" fill="none" stroke="#1D6E4C" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
+        </h1>
+        <p class="tagline">Data scientist with a background in psychology and youth advocacy.</p>
+        <p class="credential-line">MS Data Science, Willamette University, expected August 2026 &nbsp;·&nbsp; Graduate coursework in Psychology and Neuroscience, Portland State University, June 2025</p>
+        <div class="hero-ctas">
+          <a class="btn primary" href="#work">View the work</a>
+          <a class="btn" href="#contact">Get in touch</a>
+        </div>
+      </div>
+      <div class="hero-photo">
+        <img src="photo.jpg" alt="Amel Osman" onerror="this.style.display='none'">
+      </div>
     </div>
   </section>
 
   <section id="about">
-    <div class="section-head">
-      <span class="section-num mono">No. 00</span>
-      <h2 class="section-title">About</h2>
+    <div class="section-head">      <h2 class="section-title">About</h2>
     </div>
     <div class="about-grid">
       <div>
-        <p>Before data science, I worked directly with people — as a <strong>Youth Engagement Coach</strong> doing case management with foster youth, and as an organizer building youth advocacy programs across Portland, including founding <strong>Stand With Youth</strong>. That's the lens I bring to data work: a row in a dataset usually represents someone's case, someone's commute, someone's outcome.</p>
-        <p>My MS in Data Science at Willamette University builds on a psychology degree with a neuroscience minor. I'm drawn to projects where data can make an opaque system — the justice system, a transit network — a little more legible, without losing sight of who's on the other end of the record.</p>
+        <p>I started in psychology, not code. Before grad school I worked in youth advocacy and case management across a few organizations in Portland, work that shaped how I think about the systems I analyze now.</p>
+        <p>A data science class during undergrad changed my direction. I realized I wanted to work with the data itself, not just study behavior around it. That is what brought me to my Master's at Willamette, where I have focused on projects at the intersection of data and public systems.</p>
       </div>
       <div class="field-notes">
-        <h3>Field notes</h3>
+        <h3>At a glance</h3>
         <dl>
           <dt>Based in</dt><dd>Portland, Oregon</dd>
           <dt>Currently</dt><dd>Finishing MS Data Science, Willamette University</dd>
@@ -262,82 +304,211 @@
   </section>
 
   <section id="work">
-    <div class="section-head">
-      <span class="section-num mono">No. 01</span>
-      <h2 class="section-title">Selected work</h2>
+    <div class="section-head">      <h2 class="section-title">Selected work</h2>
     </div>
 
     <article class="case">
       <div class="case-meta">
         <span class="case-id mono">CASE NO. 2026-01</span>
-        <span class="case-status mono">Capstone · In progress</span>
+        <span class="case-status mono">Capstone, in progress</span>
       </div>
-      <h3>Pretrial Detention, Poverty, and the 2020 Bail Reform Law</h3>
+      <h3>New York Bail Reform and Pretrial Detention Outcomes</h3>
       <div class="case-tags">
-        <span>DuckDB</span><span>Regression</span><span>VIF Diagnostics</span><span>Policy Data</span>
+        <span>Python</span><span>pandas</span><span>scikit-learn</span><span>SQL</span><span>DuckDB</span>
       </div>
-      <p class="desc">DATA 510 capstone with a partner, supervised by faculty. Built a database from New York State's Supplemental Pretrial Release Data (1.3M+ case records, 2019–2024) combined with county-level poverty data across all 62 NY counties, to ask whether pretrial detention predicts conviction outcomes — and whether that relationship shifted after the 2020 bail reform law, or varies by county poverty level.</p>
-      <div class="case-stat">Poverty rate is a significant predictor of the detention–conviction gap (β = 0.85, p &lt; 0.001, R² = 15%)</div>
-      <a class="case-link" href="#">Add link to poster / repo →</a>
+      <p class="desc">With collaborator Hodan Aden, I analyzed over 1.3M New York DCJS pretrial case records from 2019 to 2024, merged with U.S. Census ACS county level poverty data, to test whether pretrial detention predicts conviction outcomes and how the state's 2020 bail reform changed that relationship.</p>
+      <ul class="case-bullets">
+        <li>Built a cleaned, structured database joining case, county, and poverty data</li>
+        <li>Validated results with VIF multicollinearity checks and weighted regression models</li>
+        <li>Found that poverty rate significantly predicts the gap between detention and conviction rates</li>
+      </ul>
+      <a class="case-link" href="#">Repository →</a>
     </article>
 
     <article class="case">
       <div class="case-meta">
         <span class="case-id mono">CASE NO. 2026-02</span>
-        <span class="case-status mono">Team project · Documentation Lead</span>
+        <span class="case-status mono">Completed</span>
       </div>
-      <h3>Team Hawk — Prague Metro Data Pipeline</h3>
+      <h3>Prague Metro Transit Data Pipeline, Team Hawk</h3>
       <div class="case-tags">
-        <span>Airflow</span><span>PostgreSQL</span><span>dbt</span><span>Grafana</span><span>Star Schema</span>
+        <span>Airflow</span><span>PostgreSQL</span><span>dbt</span><span>Grafana</span>
       </div>
-      <p class="desc">A data engineering course project building an end-to-end pipeline around Prague's metro transit taps — from raw MongoDB staging tables through a modeled warehouse to a Grafana geomap. As documentation lead, wrote architecture decision records, validated the star schema, and stood up the project's public documentation site.</p>
-      <a class="case-link" href="#">Add link to docs site / repo →</a>
+      <p class="desc">Served as documentation lead on a team building a data pipeline and star schema warehouse for Prague metro ridership data.</p>
+      <ul class="case-bullets">
+        <li>Authored architecture decision records covering schema design and fact table choices</li>
+        <li>Built a static ridership map and a Grafana geomap dashboard for station level activity</li>
+        <li>Documented full system architecture and access setup for the next team</li>
+      </ul>
+      <a class="case-link" href="#">Repository →</a>
     </article>
 
     <article class="case">
       <div class="case-meta">
         <span class="case-id mono">CASE NO. 2026-03</span>
-        <span class="case-status mono">Coursework</span>
+        <span class="case-status mono">Completed</span>
       </div>
-      <h3>Applied ML: From Perceptrons to Diffusion Models</h3>
+      <h3>Breast Cancer Diagnosis, Machine Learning Classification</h3>
       <div class="case-tags">
-        <span>Neural Networks</span><span>VAEs / GANs</span><span>Transformers</span><span>Convolution</span>
+        <span>Python</span><span>scikit-learn</span><span>Logistic Regression</span><span>KNN</span><span>PCA</span><span>K-Means</span>
       </div>
-      <p class="desc">A run of assignments building intuition from the ground up: implementing convolution and backpropagation by hand, comparing classical feature-engineered models against end-to-end deep learning, and working through generative architectures — autoencoders, VAEs, GANs, and diffusion models — to understand how each handles the tradeoff between control and expressiveness.</p>
-      <a class="case-link" href="#">Add project writeup →</a>
+      <p class="desc">With collaborator Hodan Aden, I used the Wisconsin breast cancer dataset of 569 patients and 30 cell measurement features to classify tumors as malignant or benign.</p>
+      <ul class="case-bullets">
+        <li>Reached 95.6 percent accuracy comparing Logistic Regression and KNN</li>
+        <li>Used PCA and K-Means to explore structure in the data</li>
+        <li>Prioritized recall over raw accuracy since a missed malignant case is the costlier error</li>
+      </ul>
+      <a class="case-link" href="#">Repository →</a>
+    </article>
+
+    <article class="case">
+      <div class="case-meta">
+        <span class="case-id mono">CASE NO. 2026-04</span>
+        <span class="case-status mono">Completed</span>
+      </div>
+      <h3>Car Brand Reliability and Repair Cost Analysis</h3>
+      <div class="case-tags">
+        <span>PostgreSQL</span><span>SQL</span>
+      </div>
+      <p class="desc">Built a PostgreSQL database from raw vehicle data to analyze reliability and repair costs across car brands.</p>
+      <ul class="case-bullets">
+        <li>Structured and queried a full relational database from scratch</li>
+        <li>Compared repair cost patterns across manufacturers</li>
+      </ul>
+      <a class="case-link" href="#">Repository →</a>
+    </article>
+
+    <article class="case">
+      <div class="case-meta">
+        <span class="case-id mono">CASE NO. 2026-05</span>
+        <span class="case-status mono">Completed</span>
+      </div>
+      <h3>Lottery Spending and State Economics</h3>
+      <div class="case-tags">
+        <span>R</span><span>ggplot2</span>
+      </div>
+      <p class="desc">Analyzed lottery sales data against state level income data to look at who is actually spending on lottery tickets and what that says about income inequality.</p>
+      <ul class="case-bullets">
+        <li>Built visualizations comparing lottery spend to state income levels</li>
+        <li>Found spending patterns that track closely with income inequality</li>
+      </ul>
+      <a class="case-link" href="#">Repository →</a>
+    </article>
+
+    <article class="case">
+      <div class="case-meta">
+        <span class="case-id mono">CASE NO. 2026-06</span>
+        <span class="case-status mono">Completed</span>
+      </div>
+      <h3>Cosmetic Ingredient Safety Analysis</h3>
+      <div class="case-tags">
+        <span>R</span>
+      </div>
+      <p class="desc">Compared ingredient lists across budget and luxury makeup brands to test whether higher price means safer ingredients.</p>
+      <ul class="case-bullets">
+        <li>Found high end brands had more potentially harmful ingredients on average</li>
+        <li>Price was not a reliable signal for ingredient safety</li>
+      </ul>
+      <a class="case-link" href="#">Repository →</a>
+    </article>
+
+    <article class="case">
+      <div class="case-meta">
+        <span class="case-id mono">CASE NO. 2026-07</span>
+        <span class="case-status mono">Completed</span>
+      </div>
+      <h3>Youth Program Analytics and Sleep-Mood Research</h3>
+      <div class="case-tags">
+        <span>Excel</span><span>Survey Design</span>
+      </div>
+      <p class="desc">Analyzed internal program data on youth enrollment and discharge activity, and designed and launched an original survey study on nightly sleep duration and self reported mood.</p>
+      <ul class="case-bullets">
+        <li>Identified key drivers of discharge outcomes to help leadership allocate resources to high risk cohorts</li>
+        <li>Built the initial dataset quantifying the sleep and mood correlation</li>
+      </ul>
+      <a class="case-link" href="#">Repository →</a>
     </article>
   </section>
 
+  <section id="experience">
+    <div class="section-head">      <h2 class="section-title">Experience</h2>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-head">
+        <div><span class="exp-role">Data Science and Logistics Analytics Intern</span> <span class="exp-org">— Mor Logistics Trucking</span></div>
+        <span class="exp-date">Nov 2024 to May 2025, Part-time, Hybrid</span>
+      </div>
+      <p class="exp-desc">Analyzed transportation and operations data to identify trends and support more efficient logistics processes. Prepared, cleaned, and organized datasets used for internal reporting and operational insights. Created reports and visualizations to help teams understand performance and delivery patterns, and worked with the team to support data driven improvements in routing, scheduling, and delivery operations.</p>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-head">
+        <div><span class="exp-role">Youth Engagement Coach</span> <span class="exp-org">— Youth Progress</span></div>
+        <span class="exp-date">Jul 2024 to Present</span>
+      </div>
+      <p class="exp-desc">Provide BRS case management for foster youth, coaching and mentoring while maintaining full documentation compliance with state standards.</p>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-head">
+        <div><span class="exp-role">Substitute Teacher</span> <span class="exp-org">— ESS</span></div>
+        <span class="exp-date">Oct 2023 to May 2025</span>
+      </div>
+      <p class="exp-desc">Supported individualized education plans and maintained classroom routines in special needs environments.</p>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-head">
+        <div><span class="exp-role">Youth Advocate</span> <span class="exp-org">— IRCO</span></div>
+        <span class="exp-date">Jan 2022 to Jul 2023</span>
+      </div>
+      <p class="exp-desc">Connected immigrant and refugee youth and families to community and educational resources, facilitating successful integration.</p>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-head">
+        <div><span class="exp-role">Case Manager, Founder of Stand With Youth</span> <span class="exp-org">— SACCO</span></div>
+        <span class="exp-date">Mar 2021 to Sep 2021</span>
+      </div>
+      <p class="exp-desc">Conducted intake assessments and developed individualized service plans for youth and families. Founded a youth advocacy initiative to coordinate referrals across providers.</p>
+    </div>
+  </section>
+
   <section id="skills">
-    <div class="section-head">
-      <span class="section-num mono">No. 02</span>
-      <h2 class="section-title">Skills</h2>
+    <div class="section-head">      <h2 class="section-title">Skills</h2>
     </div>
     <div class="skills-grid">
+      <div class="skill-group">
+        <h3>Programming</h3>
+        <ul>
+          <li>Python</li>
+          <li>R</li>
+          <li>SQL</li>
+        </ul>
+      </div>
       <div class="skill-group">
         <h3>Data Engineering</h3>
         <ul>
           <li>DuckDB &amp; PostgreSQL</li>
-          <li>Airflow &amp; dbt</li>
+          <li>dbt &amp; Airflow</li>
           <li>Docker</li>
-          <li>Pipeline documentation (ADRs)</li>
         </ul>
       </div>
       <div class="skill-group">
-        <h3>ML &amp; Statistics</h3>
+        <h3>Machine Learning</h3>
         <ul>
-          <li>Regression &amp; VIF diagnostics</li>
-          <li>Neural network architectures</li>
-          <li>Generative models (VAE, GAN, diffusion)</li>
-          <li>Transformers &amp; attention</li>
+          <li>Scikit-learn</li>
+          <li>Neural networks (MLP, CNN, RNN/LSTM, Autoencoder, GAN, VAE)</li>
+          <li>Logistic Regression, KNN, K-Means</li>
         </ul>
       </div>
       <div class="skill-group">
         <h3>Tools</h3>
         <ul>
-          <li>Python &amp; SQL</li>
-          <li>Git</li>
+          <li>Git &amp; GitHub</li>
           <li>Grafana</li>
+          <li>Excel</li>
         </ul>
       </div>
       <div class="skill-group">
@@ -352,16 +523,14 @@
   </section>
 
   <section id="contact">
-    <div class="section-head">
-      <span class="section-num mono">No. 03</span>
-      <h2 class="section-title">Contact</h2>
+    <div class="section-head">      <h2 class="section-title">Contact</h2>
     </div>
     <div class="contact-box">
       <p style="max-width:44ch; color:var(--ink-soft); margin:0;">Open to data science and analytics roles, especially where the work touches public systems or social impact.</p>
       <div class="contact-links">
-        <a class="btn primary" href="mailto:your.email@example.com">Email me</a>
-        <a class="btn" href="#">LinkedIn</a>
-        <a class="btn" href="#">GitHub</a>
+        <a class="btn primary" href="mailto:aosmannnn1@gmail.com">Email me</a>
+        <a class="btn" href="https://www.linkedin.com/in/amel-osman-745b22252/" target="_blank">LinkedIn</a>
+        <a class="btn" href="https://github.com/ayosman3" target="_blank">GitHub</a>
       </div>
     </div>
   </section>
